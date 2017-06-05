@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="custom-servlet-container-initializer:war">
-    <output-path>$PROJECT_DIR$/target</output-path>
-    <root id="archive" name="custom-servlet-container-initializer-1.0.war">
-      <element id="artifact" artifact-name="custom-servlet-container-initializer:war exploded" />
-    </root>
-  </artifact>
-</component>
