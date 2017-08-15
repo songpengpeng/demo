@@ -53,16 +53,18 @@ public class MailTest {
 
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setHost("smtp.ctban.com");
-        mailSender.setUsername("ctban@ctban.com");
-        mailSender.setPassword("jzwang123");
-        // Prepare message using a Spring helper
+        mailSender.setUsername("xxx@xxx.com");
+        mailSender.setPassword("xxx");
+
         final MimeMessage mimeMessage = mailSender.createMimeMessage();
         final MimeMessageHelper message = new MimeMessageHelper(mimeMessage,"UTF-8");
+
         message.setSubject("Spring Thymeleaf Email");
-        message.setFrom("ctban@ctban.com");
-        message.setTo("2841909223@qq.com");
+        message.setFrom("xxx@xxx.com");
+        message.setTo("xxx@qq.com");
         final String htmlContent = this.templateEngine.process("email-template", ctx);
-        // true 标识 HTML
+
+        // true 表示 HTML
         message.setText(htmlContent, true);
         mailSender.send(mimeMessage);
     }
