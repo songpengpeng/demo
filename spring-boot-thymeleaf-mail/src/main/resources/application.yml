@@ -1,0 +1,5 @@
+spring:
+  mail:
+    host: smtp.ctban.com
+    username: xxx@xxx.com
+    password: xxx
