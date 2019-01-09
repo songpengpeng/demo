@@ -21,7 +21,13 @@ public class GroupPersonTest {
                 GroupPerson.builder().sex(2).name("woman-1").build(),
                 GroupPerson.builder().sex(2).name("woman-2").build()
         );
-        Map<Integer, ArrayList<GroupPerson>> map = persons.stream().collect(Collectors.groupingBy(GroupPerson::getSex, Collectors.toCollection(ArrayList::new)));
+        Map<Integer, ArrayList<GroupPerson>> map = persons.stream()
+                .collect(
+                        Collectors.groupingBy(
+                                GroupPerson::getSex,
+                                Collectors.toCollection(ArrayList::new)
+                        )
+                );
         assertThat(map.get(1).size(), is(2));
         assertThat(map.get(2).size(), is(2));
     }
