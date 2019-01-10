@@ -4,8 +4,6 @@ import com.google.common.base.Suppliers;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.concurrent.TimeUnit;
 import java.util.function.Supplier;
 
@@ -13,11 +11,9 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
 
 public class SupplierPersonTest {
-    private final ByteArrayOutputStream content = new ByteArrayOutputStream();
-
     @Before
     public void setUp() throws Exception {
-        System.setOut(new PrintStream(content));
+        SupplierPerson.atomicInteger.set(0);
     }
 
     @Test
@@ -26,7 +22,7 @@ public class SupplierPersonTest {
         Supplier<SupplierPerson> supplier = Suppliers.memoizeWithExpiration(person, 1, TimeUnit.SECONDS);
         supplier.get();
         supplier.get();
-        assertThat("get ", is(content.toString()));
+        assertThat(SupplierPerson.atomicInteger.get(), is(1));
     }
 
     @Test
@@ -35,7 +31,7 @@ public class SupplierPersonTest {
         Supplier<SupplierPerson> supplier = Suppliers.memoizeWithExpiration(person, 1, TimeUnit.NANOSECONDS);
         supplier.get();
         supplier.get();
-        assertThat("get get ", is(content.toString()));
+        assertThat(SupplierPerson.atomicInteger.get(), is(2));
     }
 
 }
